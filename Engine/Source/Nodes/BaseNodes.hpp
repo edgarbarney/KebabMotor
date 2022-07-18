@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include <any>
+
 #include "imgui.h"
 #include "imgui-SFML.h"
 #define IMGUI_DEFINE_MATH_OPERATORS
@@ -34,60 +36,11 @@ namespace MyEngine::Nodes
 	class Pin;
 	using PinId = ax::NodeEditor::PinId;
 	using PinKind = ax::NodeEditor::PinKind; // Input pin or Output pin?
-
+	
+	// Danger: A PinData must be movable and copyable struct or class
+	using PinData = std::any;
+	
 	PinId ENG_DLLEXP GetUniquePinID();
-
-	// Data type of the pin
-	enum class PinType
-	{
-		Raw, // For custom data
-		Exec,
-		Int,
-		Float,
-		Bool,
-		String
-	};
-
-	class ENG_DLLEXP PinData
-	{
-	private:
-		PinType pinType;
-		void* dataPtr;
-		String customTypeName; // For raw types. For ability to track type.
-
-	public:
-		PinData(); // Manual initialisation is required now.
-		~PinData();
-
-		// With a pin type
-		void Intialise(PinType _pinType, String _customTypeName);
-
-		bool IsRaw();
-		bool IsExec();
-		bool IsInt();
-		bool IsFloat();
-		bool IsBool();
-		bool IsString();
-
-		// Proceed with caution.
-		// You should explicitly convert data Use SetRaw<T> for auto.
-		void SetRaw_Exp(void* _data);
-
-		// Proceed with caution. 
-		template<typename _T>
-		void SetRaw(const _T& _data)
-		{
-			if (dataPtr == nullptr) // Initial Set
-			{
-				return;
-			}
-			else
-			{
-				*data = _data;
-			}
-		}
-
-	};
 
 	class ENG_DLLEXP Pin
 	{
