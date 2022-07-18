@@ -1,0 +1,69 @@
+{
+  "Main": {
+    "Dirs": {
+      "From": "?{+}/",
+      "To": "?{+}/Build/?*3*_?*2*/"
+    },
+    "Data": [
+      {
+        "type": "Win32",
+        "data": [
+          {
+            "type": "x64",
+            "data": [
+              {
+                "type": "release",
+                "data": [
+				  "Engine/Libraries/SFML/Win64/bin/openal32.dll",
+                  "Engine/Libraries/SFML/Win64/bin/sfml-audio-2.dll",
+                  "Engine/Libraries/SFML/Win64/bin/sfml-graphics-2.dll",
+                  "Engine/Libraries/SFML/Win64/bin/sfml-network-2.dll",
+                  "Engine/Libraries/SFML/Win64/bin/sfml-system-2.dll",
+                  "Engine/Libraries/SFML/Win64/bin/sfml-window-2.dll"
+                ]
+              },
+              {
+                "type": "debug",
+                "data": [
+				  "Engine/Libraries/SFML/Win64/bin/openal32.dll",
+                  "Engine/Libraries/SFML/Win64/bin/sfml-audio-d-2.dll",
+                  "Engine/Libraries/SFML/Win64/bin/sfml-graphics-d-2.dll",
+                  "Engine/Libraries/SFML/Win64/bin/sfml-network-d-2.dll",
+                  "Engine/Libraries/SFML/Win64/bin/sfml-system-d-2.dll",
+                  "Engine/Libraries/SFML/Win64/bin/sfml-window-d-2.dll"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "x86",
+            "data": [
+              {
+                "type": "release",
+                "data": [
+				  "Engine/Libraries/SFML/Win32/bin/openal32.dll",
+                  "Engine/Libraries/SFML/Win32/bin/sfml-audio-2.dll",
+                  "Engine/Libraries/SFML/Win32/bin/sfml-graphics-2.dll",
+                  "Engine/Libraries/SFML/Win32/bin/sfml-network-2.dll",
+                  "Engine/Libraries/SFML/Win32/bin/sfml-system-2.dll",
+                  "Engine/Libraries/SFML/Win32/bin/sfml-window-2.dll"
+                ]
+              },
+              {
+                "type": "debug",
+                "data": [
+				  "Engine/Libraries/SFML/Win32/bin/openal32.dll",
+                  "Engine/Libraries/SFML/Win32/bin/sfml-audio-d-2.dll",
+                  "Engine/Libraries/SFML/Win32/bin/sfml-graphics-d-2.dll",
+                  "Engine/Libraries/SFML/Win32/bin/sfml-network-d-2.dll",
+                  "Engine/Libraries/SFML/Win32/bin/sfml-system-d-2.dll",
+                  "Engine/Libraries/SFML/Win32/bin/sfml-window-d-2.dll"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

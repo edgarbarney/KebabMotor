@@ -1,0 +1,46 @@
+// FranticDreamer 2022
+// Pointer Wrapper Utilities
+
+#pragma once
+
+// Helpers for pointers
+// Mostly placeholders for future scriping language implementations.
+
+namespace MyEngine
+{
+	template <typename _T>
+	// Raw Pointer Wrapper
+	class RawPointer
+	{
+		_T* basePtr = nullptr;
+
+	public:
+		RawPointer(_T* ptr = nullptr) : basePtr(ptr) {}
+
+		_T& operator*() const { return *basePtr; }
+		_T* operator->() const { return basePtr; }
+
+		_T* Data() const { return basePtr; };
+
+		// Do we really need these cast wrappers?
+
+		template <typename _CastT>
+		_CastT StaticCast() const { return static_cast<_CastT>(basePtr); }
+
+		template <typename _CastT>
+		_CastT DynamicCast() const { return dynamic_cast<_CastT>(basePtr); }
+
+		void Create(const _T& data) 
+		{
+			if (basePtr == nullptr)
+				basePtr = new _T(data); 
+		}
+		void Delete() 
+		{
+			if (basePtr != nullptr)
+				delete basePtr;
+		}
+	};
+
+	// TODO: Smart Pointers
+};
