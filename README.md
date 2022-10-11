@@ -1,4 +1,4 @@
-Kemal's idea
+KebabMotor (Formerly: Kemal's idea)
 
 List of used libraries:
 [JSON 3.10.5](https://github.com/nlohmann/json "JSON")
