@@ -6,7 +6,7 @@
 // Helpers for pointers
 // Mostly placeholders for future scriping language implementations.
 
-namespace MyEngine
+namespace KebabMotor
 {
 	template <typename _T>
 	// Raw Pointer Wrapper

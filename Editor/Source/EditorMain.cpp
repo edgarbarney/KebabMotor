@@ -9,26 +9,27 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Clock.hpp>
 
-#include "Containers/String.hpp"
+#include "Core/Containers/String.hpp"
+#include "Nodeboard/Nodeboard.hpp"
+#include "Nodes/BaseNodes.hpp"
 
 using namespace EditorMain;
 namespace NodeEditor = ax::NodeEditor;//using namespace ax; // Main namespace of the node editor
 
+KebabMotor::Editor::Nodeboard nbrd;
+
 int main()
 {
-	MyEngine::List<int> myList;
+	static bool isFirstFrame = true;    // Some action need to be executed once.
 
-	myList.Append(1);
-	myList.Append(2);
-	myList.Append(1);
-	myList.Append(5);
+	KebabMotor::List<int> myList;
 
 	for (auto& elem : myList)
 	{
 		std::cout << elem << "\n";
 	}
 
-	mainWindow = new sf::RenderWindow(Defaults::defaultWindowMode, "My Engine Editor");
+	mainWindow = new sf::RenderWindow(Defaults::defaultWindowMode, "KebabMotor Editor");
 	auto& mainWindowRef = *(static_cast<sf::RenderWindow*>(mainWindow));
 	
 	mainWindowRef.setFramerateLimit(60);
@@ -44,6 +45,14 @@ int main()
 	config.SettingsFile = "Simple.json";
 	mainContext = NodeEditor::CreateEditor(&config);
 	
+	for (int i = 0; i < 10; i++)
+	{
+		auto temp = KebabMotor::Nodes::Node(KebabMotor::Nodes::NodeType::Default);
+		temp.AddPin(KebabMotor::Nodes::PinKind::Input);
+		temp.AddPin(KebabMotor::Nodes::PinKind::Output);
+		nbrd.AddNode(temp);
+	}
+
 	while (mainWindowRef.isOpen())
 	{
 		sf::Event event;
@@ -59,47 +68,10 @@ int main()
 
 		ImGui::SFML::Update(mainWindowRef, deltaClock.restart());
 
-		//ImGui::Begin("Hello, world!");
-		//ImGui::Button(std::to_string(io.DeltaTime).c_str());
-		//ImGui::End();
+		nbrd.DrawNodeboard(mainContext, isFirstFrame);
 
-		ImGui::Text("FPS: %.2f (%.2gms)", io.Framerate, io.Framerate ? 1000.0f / io.Framerate : 0.0f);
-
-		ImGui::Separator();
-
-		NodeEditor::SetCurrentEditor(mainContext);
-		NodeEditor::Begin("My Editor", ImVec2(0.0, 0.0f));
-		int uniqueId = 1;
-		// Start drawing nodes.
-		NodeEditor::BeginNode(uniqueId++);
-		ImGui::Text("Node A");
-		NodeEditor::BeginPin(uniqueId++, NodeEditor::PinKind::Input);
-		ImGui::Text("-> In");
-		NodeEditor::EndPin();
-		ImGui::SameLine();
-		NodeEditor::BeginPin(uniqueId++, NodeEditor::PinKind::Output);
-		ImGui::Text("Out ->");
-		NodeEditor::EndPin();
-		NodeEditor::EndNode();
+		isFirstFrame = false;
 		
-
-		NodeEditor::BeginNode(uniqueId++);
-		ImGui::Text("Node A");
-		NodeEditor::BeginPin(uniqueId++, NodeEditor::PinKind::Input);
-		ImGui::Text("-> In");
-		NodeEditor::EndPin();
-		ImGui::SameLine();
-		NodeEditor::BeginPin(uniqueId++, NodeEditor::PinKind::Output);
-		ImGui::Text("Out ->");
-		NodeEditor::EndPin();
-		NodeEditor::EndNode();
-
-		NodeEditor::End();
-		NodeEditor::SetCurrentEditor(nullptr);
-
-
-
-
 		mainWindowRef.clear();
 		ImGui::SFML::Render(mainWindowRef);
 		mainWindowRef.display();

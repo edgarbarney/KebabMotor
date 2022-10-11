@@ -10,7 +10,7 @@ set (CURDIR ${CMAKE_CURRENT_SOURCE_DIR})
 set (copylibscriptdir ${CURDIR}/_External/CopyLibsUtil.exe)
 file (TO_NATIVE_PATH ${copylibscriptdir} copylibscriptdir)
 
-project ("MyEngine")
+project ("KebabMotor")
 
 set (PROJECT_GAME_NAME "MyGameName")
 
@@ -64,47 +64,47 @@ include ("Files_Editor.cmake")
 include_directories("Engine/Libraries")
 
 # Engine DLL
-add_library (MyEngine_Engine SHARED ${ENGINE_SOURCEFILES})
-target_compile_definitions(MyEngine_Engine PRIVATE _MYENGINE_ENGINE)
-target_link_libraries(MyEngine_Engine
+add_library (KebabMotor_Engine SHARED ${ENGINE_SOURCEFILES})
+target_compile_definitions(KebabMotor_Engine PRIVATE _KEBABMOTOR_ENGINE)
+target_link_libraries(KebabMotor_Engine
 	${Libs_SFML}
 	dear_imgui
 )
-#target_include_directories(MyEngine_Game PRIVATE "Engine/Libraries")
-add_custom_command(TARGET MyEngine_Engine POST_BUILD COMMAND 
+#target_include_directories(KebabMotor_Game PRIVATE "Engine/Libraries")
+add_custom_command(TARGET KebabMotor_Engine POST_BUILD COMMAND 
 	${copylibscriptdir} "Win32" ${PROJECT_ARCH} ${PROJECT_CONF}
 )
 
 # Game DLL
-add_library (MyEngine_Game SHARED ${GAME_SOURCEFILES})
-target_compile_definitions(MyEngine_Game PRIVATE _MYENGINE_GAME)
-target_link_libraries(MyEngine_Game
-	MyEngine_Engine
+add_library (KebabMotor_Game SHARED ${GAME_SOURCEFILES})
+target_compile_definitions(KebabMotor_Game PRIVATE _KEBABMOTOR_GAME)
+target_link_libraries(KebabMotor_Game
+	KebabMotor_Engine
 	dear_imgui
 )
-target_include_directories(MyEngine_Game PRIVATE "Game/Libraries")
+target_include_directories(KebabMotor_Game PRIVATE "Game/Libraries")
 
 # Launcher
-add_executable (MyEngine_Launcher ${LAUNCHER_SOURCEFILES})
-target_compile_definitions(MyEngine_Launcher PRIVATE _MYENGINE_LAUNCHER)
-target_link_libraries(MyEngine_Launcher
-	MyEngine_Engine
-	MyEngine_Game
+add_executable (KebabMotor_Launcher ${LAUNCHER_SOURCEFILES})
+target_compile_definitions(KebabMotor_Launcher PRIVATE _KEBABMOTOR_LAUNCHER)
+target_link_libraries(KebabMotor_Launcher
+	KebabMotor_Engine
+	KebabMotor_Game
 )
-#target_include_directories(MyEngine_Game PRIVATE "Launcher/Libraries")
+#target_include_directories(KebabMotor_Game PRIVATE "Launcher/Libraries")
 
 #Set Launcher Executable output name to the game name 
-set_target_properties(MyEngine_Launcher PROPERTIES OUTPUT_NAME ${PROJECT_GAME_NAME})
+set_target_properties(KebabMotor_Launcher PROPERTIES OUTPUT_NAME ${PROJECT_GAME_NAME})
 
 
 # Editor
-add_executable (MyEngine_Editor ${EDITOR_SOURCEFILES})
-target_compile_definitions(MyEngine_Editor PRIVATE _MYENGINE_EDITOR)
-target_link_libraries(MyEngine_Editor
-	MyEngine_Engine
-	MyEngine_Game
+add_executable (KebabMotor_Editor ${EDITOR_SOURCEFILES})
+target_compile_definitions(KebabMotor_Editor PRIVATE _KEBABMOTOR_EDITOR)
+target_link_libraries(KebabMotor_Editor
+	KebabMotor_Engine
+	KebabMotor_Game
 	${Libs_SFML}
 	dear_imgui
 )
 
-#target_include_directories(MyEngine_Game PRIVATE "Editor/Libraries")
+#target_include_directories(KebabMotor_Game PRIVATE "Editor/Libraries")

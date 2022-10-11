@@ -8,7 +8,7 @@
 
 #include "Shared/Platform.hpp"
 
-namespace MyEngine
+namespace KebabMotor
 {
 	using Character = char; // Default character is char
 
@@ -60,6 +60,9 @@ namespace MyEngine
 		// Get base array data. For default String, will return c-style string.
 		const _T* CharacterArray() const;
 
+		[[deprecated("Replaced by CharacterArray()")]]
+		const _T* c_str() const { return CharacterArray(); }
+		
 		size_t Length() const;
 
 		// Put another string at the end of the String
@@ -125,7 +128,7 @@ namespace MyEngine
 	
 	// Only String (BaseString<Character>) is exported.
 
-#ifdef _MYENGINE_ENGINE
+#ifdef _KEBABMOTOR_ENGINE
 	extern template class BaseString<Character>; // No need for individual instantiation on other objects
 #else
 	template class ENG_DLLEXP BaseString<Character>; // Import if not engine

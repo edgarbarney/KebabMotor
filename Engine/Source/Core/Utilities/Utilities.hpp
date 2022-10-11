@@ -7,7 +7,7 @@
 
 #include "Shared/Platform.hpp"
 
-namespace MyEngine::Utilities
+namespace KebabMotor::Utilities
 {
 	namespace Strings
 	{

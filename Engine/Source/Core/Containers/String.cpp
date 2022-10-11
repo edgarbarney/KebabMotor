@@ -6,7 +6,7 @@
 #include "String.hpp"
 #include <iostream>
 
-namespace MyEngine
+namespace KebabMotor
 {
 	template<class _T>
 	BaseString<_T>::BaseString() :

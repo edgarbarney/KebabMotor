@@ -3,7 +3,7 @@
 
 #pragma once
 
-#if defined _MYENGINE_ENGINE
+#if defined _KEBABMOTOR_ENGINE
 
 
 #define GAME_DLLEXP		__declspec( dllimport )
@@ -13,7 +13,7 @@
 #define ENG_EXPONLY		
 
 
-#elif defined _MYENGINE_LAUNCHER
+#elif defined _KEBABMOTOR_LAUNCHER
 
 
 #define GAME_DLLEXP __declspec( dllimport )
@@ -23,7 +23,7 @@
 #define ENG_EXPONLY	__declspec( dllimport )
 
 
-#elif defined _MYENGINE_GAME
+#elif defined _KEBABMOTOR_GAME
 
 
 #define GAME_DLLEXP __declspec( dllexport )
@@ -33,7 +33,7 @@
 #define ENG_EXPONLY	__declspec( dllimport )
 
 
-#elif defined _MYENGINE_EDITOR
+#elif defined _KEBABMOTOR_EDITOR
 
 
 #define GAME_DLLEXP __declspec( dllimport )

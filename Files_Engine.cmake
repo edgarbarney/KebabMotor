@@ -11,10 +11,10 @@ SET(GLOB ENGINE_HEADERFILES
 	Engine/Source/EngineMain.hpp
 	
 	#Utilities
-    Engine/Source/Utilities/Utilities.hpp
+    Engine/Source/Core/Utilities/Utilities.hpp
 
 	#Containers
-	Engine/Source/Containers/*.hpp
+	Engine/Source/Core/Containers/*.hpp
 
 	#Nodes
 	Engine/Source/Nodes/*.hpp
@@ -27,13 +27,13 @@ FILE(GLOB ENGINE_SOURCEFILES
     Engine/Source/EngineMain.cpp
 	
 	#Utilities
-	Engine/Source/Utilities/Utilities.cpp
-
-	#Nodes
-	Engine/Source/Nodes/*.cpp
+	Engine/Source/Core/Utilities/Utilities.cpp
 
 	#Containers
-	Engine/Source/Containers/*.cpp
+	Engine/Source/Core/Containers/*.cpp
+	
+	#Nodes
+	Engine/Source/Nodes/*.cpp
     )
 
 include_directories("Engine/Source")

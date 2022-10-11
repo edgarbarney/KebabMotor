@@ -8,7 +8,7 @@
 #include "SFML/Window.hpp"
 #include "SFML/Window/Event.hpp"
 
-#include "Engine/Source/Nodes/BaseNodes.hpp"
+#include "Nodes/BaseNodes.hpp"
 
 namespace EditorMain
 {
